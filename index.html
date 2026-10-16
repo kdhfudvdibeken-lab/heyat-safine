@@ -1,170 +1,214 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هیئت سفینة‌النجاة | نوجوانان مشهدی</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap');
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
-        }
-        .glow-effect {
-            box-shadow: 0 0 25px rgba(59, 130, 246, 0.3);
-        }
-        .glow-text {
-            text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هیئت سفینةُالنجاة | نوجوانان مشهد</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{font-family:'Vazirmatn',sans-serif}
+  body{background:#060913;color:#f3f4f6;overflow-x:hidden}
+
+  /* ===== پس‌زمینه متحرک ===== */
+  .bg-anim{position:fixed;inset:0;z-index:-2;background:linear-gradient(-45deg,#060913,#0b1230,#060913,#12082b);background-size:400% 400%;animation:bgmove 15s ease infinite}
+  @keyframes bgmove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  .blob{position:fixed;border-radius:50%;filter:blur(90px);z-index:-1;opacity:.35;animation:float 10s ease-in-out infinite}
+  .blob1{width:300px;height:300px;background:#3b82f6;top:-60px;right:-60px}
+  .blob2{width:280px;height:280px;background:#8b5cf6;bottom:-40px;left:-60px;animation-delay:-5s}
+  @keyframes float{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-30px) scale(1.15)}}
+
+  /* ===== نوار متحرک بالای سایت ===== */
+  .ticker-wrap{overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,#1e3a8a,#4c1d95,#1e3a8a);border-bottom:1px solid rgba(96,165,250,.4)}
+  .ticker{display:inline-block;padding:8px 0;animation:tickermove 18s linear infinite;font-weight:800;letter-spacing:1px}
+  @keyframes tickermove{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+  .ticker span{color:#fde68a;text-shadow:0 0 12px rgba(253,230,138,.6)}
+
+  /* ===== کارت‌های شیشه‌ای ===== */
+  .glass{background:rgba(15,23,42,.65);backdrop-filter:blur(14px);border:1px solid rgba(148,163,184,.15);border-radius:1.25rem;transition:all .4s ease}
+  .glass:hover{transform:translateY(-5px) scale(1.02);border-color:rgba(96,165,250,.6);box-shadow:0 10px 40px rgba(59,130,246,.25)}
+
+  /* ===== انیمیشن ظاهر شدن ===== */
+  .reveal{opacity:0;transform:translateY(40px);animation:rise .9s ease forwards}
+  @keyframes rise{to{opacity:1;transform:translateY(0)}}
+  .d1{animation-delay:.2s}.d2{animation-delay:.4s}.d3{animation-delay:.6s}.d4{animation-delay:.8s}.d5{animation-delay:1s}.d6{animation-delay:1.2s}.d7{animation-delay:1.4s}
+
+  /* ===== لوگو و تیتر ===== */
+  .logo-ring{animation:pulseRing 2.5s ease-in-out infinite;border-radius:1.5rem}
+  @keyframes pulseRing{0%,100%{box-shadow:0 0 20px rgba(59,130,246,.4)}50%{box-shadow:0 0 50px rgba(139,92,246,.8)}}
+  .glow-title{background:linear-gradient(90deg,#93c5fd,#e0e7ff,#c4b5fd,#93c5fd);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+  @keyframes shine{to{background-position:200% center}}
+
+  /* ===== شمارشگر ===== */
+  .flip{animation:tick 1s ease infinite}
+  @keyframes tick{0%{transform:scale(1)}50%{transform:scale(1.08)}100%{transform:scale(1)}}
+
+  /* ===== پوستر ===== */
+  .poster-img{transition:transform .6s ease}
+  .poster-frame:hover .poster-img{transform:scale(1.07)}
+
+  /* ===== دکمه درخشان ===== */
+  .btn-glow{background:linear-gradient(90deg,#2563eb,#7c3aed);background-size:200% auto;transition:.4s;box-shadow:0 0 20px rgba(79,70,229,.5)}
+  .btn-glow:hover{background-position:right center;transform:scale(1.04);box-shadow:0 0 35px rgba(124,58,237,.7)}
+
+  input,select{background:rgba(30,41,59,.8);border:1px solid rgba(148,163,184,.25);border-radius:.75rem;padding:.65rem .9rem;width:100%;color:#fff;outline:none;transition:.3s}
+  input:focus,select:focus{border-color:#60a5fa;box-shadow:0 0 15px rgba(96,165,250,.35)}
+
+  /* ===== صفحه ورود (برای صوت) ===== */
+  #enterOverlay{position:fixed;inset:0;background:rgba(6,9,19,.95);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .8s}
+  #enterOverlay.hide{opacity:0;pointer-events:none}
+  .enter-icon{animation:float 2.5s ease-in-out infinite}
+</style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-6 relative overflow-x-hidden">
+<body>
 
-    <!-- Background Glow Blobs -->
-    <div class="absolute top-0 -left-20 w-72 h-72 bg-blue-600/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute bottom-10 -right-20 w-72 h-72 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="bg-anim"></div>
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
 
-    <div class="w-full max-w-md mx-auto space-y-6 z-10">
-        
-        <!-- Header / Logo -->
-        <div class="text-center space-y-3 pt-4">
-            <div class="w-24 h-24 mx-auto rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-500 p-1 glow-effect flex items-center justify-center">
-                <img src="logo.png" alt="لوگو هیئت" class="w-full h-full object-cover rounded-xl bg-gray-900" onerror="this.src='https://via.placeholder.com/150?text=Safinat'">
-            </div>
-            <div class="inline-block bg-blue-500/10 text-blue-400 text-xs px-3 py-1 rounded-full border border-blue-500/20 font-medium">
-                ﷽ · تأسیس: ۱۴۰۴ هـ.ش / ۱۴۴۷ هـ.ق
-            </div>
-            <h1 class="text-2xl font-black text-white glow-text">هیئت سفینة‌النجاة</h1>
-            <p class="text-gray-400 text-sm">نوجوانان مشهد مقدس</p>
-        </div>
+<!-- صفحه ورود (برای فعال‌سازی صوت طبق سیاست مرورگر) -->
+<div id="enterOverlay" onclick="startAudio()">
+  <div class="enter-icon text-6xl text-blue-400 mb-4"><i class="fa-solid fa-mosque"></i></div>
+  <h2 class="text-xl font-black text-white mb-2">هیئت سفینةُالنّجاة</h2>
+  <p class="text-sm text-blue-300 animate-pulse"><i class="fa-solid fa-hand-pointer ml-1"></i> برای ورود و شنیدن زیارت عاشورا کلیک کنید</p>
+</div>
 
-        <!-- Live Audio Player Section -->
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-3">
-            <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center">
-                        <i class="fa-solid fa-headphones-simple"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-sm font-bold text-white">صوت ماندگار (زیارت عاشورا)</h3>
-                        <p class="text-xs text-gray-400">با نوای حاج علی فانی</p>
-                    </div>
-                </div>
-                <span class="relative flex h-3 w-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-blue-500"></span>
-                </span>
-            </div>
-            <!-- Audio Tag -->
-            <audio controls class="w-full h-10 accent-blue-500">
-                <source src="ali_fani_ziarat_ashora.mp3" type="audio/mpeg">
-                مرورگر شما از پخش صوت پشتیبانی نمی‌کند.
-            </audio>
-        </div>
+<!-- نوار متحرک بالای صفحه -->
+<div class="ticker-wrap w-full sticky top-0 z-50">
+  <div class="ticker text-sm">
+    <span>✨ هر چهارشنبه شب، هیئت سفینةُالنّجاة — مسجد و حسینیه امام صادق (ع) ✨ </span>
+    <span>✨ هر چهارشنبه شب، هیئت سفینةُالنّجاة — مسجد و حسینیه امام صادق (ع) ✨ </span>
+  </div>
+</div>
 
-        <!-- Countdown Timer -->
-        <div class="bg-gradient-to-br from-gray-900/90 to-gray-900/40 border border-gray-800 rounded-2xl p-4 backdrop-blur-md shadow-xl text-center space-y-3">
-            <div class="text-xs text-blue-400 font-bold flex items-center justify-center gap-1.5">
-                <i class="fa-regular fa-clock"></i>
-                <span>جلسه بعدی هیئت</span>
-            </div>
-            <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
-                <div class="bg-gray-800/60 p-2 rounded-xl border border-gray-700/50">
-                    <span id="days" class="text-lg font-black text-white block">۰۰</span>
-                    <span class="text-[10px] text-gray-400">روز</span>
-                </div>
-                <div class="bg-gray-800/60 p-2 rounded-xl border border-gray-700/50">
-                    <span id="hours" class="text-lg font-black text-white block">۰۰</span>
-                    <span class="text-[10px] text-gray-400">ساعت</span>
-                </div>
-                <div class="bg-gray-800/60 p-2 rounded-xl border border-gray-700/50">
-                    <span id="minutes" class="text-lg font-black text-white block">۰۰</span>
-                    <span class="text-[10px] text-gray-400">دقیقه</span>
-                </div>
-                <div class="bg-gray-800/60 p-2 rounded-xl border border-gray-700/50">
-                    <span id="seconds" class="text-lg font-black text-white block">۰۰</span>
-                    <span class="text-[10px] text-gray-400">ثانیه</span>
-                </div>
-            </div>
-        </div>
+<div class="max-w-md mx-auto p-4 space-y-5">
 
-        <!-- Poster Section -->
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-3 backdrop-blur-md shadow-lg space-y-3">
-            <div class="flex items-center justify-between px-1">
-                <span class="text-xs font-bold text-gray-300"><i class="fa-solid fa-image text-blue-400 ml-1"></i> پوستر این هفته</span>
-            </div>
-            <div class="rounded-xl overflow-hidden border border-gray-800 bg-gray-950">
-                <img src="poster.jpg" alt="پوستر جلسه" class="w-full h-auto object-cover" onerror="this.src='https://via.placeholder.com/600x800?text=Poster'">
-            </div>
-        </div>
-
-        <!-- Address & Location Card -->
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2 text-center">
-            <div class="w-8 h-8 mx-auto rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center mb-1">
-                <i class="fa-solid fa-location-dot"></i>
-            </div>
-            <h3 class="text-sm font-bold text-white">نشانی جلسه</h3>
-            <p class="text-xs text-gray-300 leading-relaxed">مشهد، بولوار لادن، مقابل لادن ۳۶<br>مسجد و حسینیه امام صادق (ع)</p>
-        </div>
-
-        <!-- Social Links -->
-        <div class="grid grid-cols-1 gap-3">
-            <a href="https://eitaa.com/javanan_safine_nejat" target="_blank" class="flex items-center justify-between p-3.5 rounded-xl bg-gray-900/80 hover:bg-gray-800 border border-gray-800 transition-all group">
-                <div class="flex items-center space-x-3 space-x-reverse">
-                    <div class="w-9 h-9 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold">ایتا</div>
-                    <span class="text-sm font-medium text-gray-200">کانال ایتا هیئت</span>
-                </div>
-                <i class="fa-solid fa-chevron-left text-xs text-gray-500 group-hover:text-white transition-colors"></i>
-            </a>
-        </div>
-
-        <!-- Khadem Registration Form -->
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-3">
-            <div class="text-center">
-                <h3 class="text-sm font-bold text-white mb-1"><i class="fa-solid fa-hands-holding-child text-blue-400 ml-1"></i> بخش خادمین</h3>
-                <p class="text-[11px] text-gray-400">برای خادمی در هیئت، از طریق ایتا با ما در ارتباط باشید</p>
-            </div>
-            <a href="https://eitaa.com/09158573786" target="_blank" class="block w-full py-3 bg-blue-600 hover:bg-blue-500 text-white text-center text-xs font-bold rounded-xl shadow-lg shadow-blue-600/30 transition-all">
-                ارتباط با شماره خادمی (ایتا)
-            </a>
-        </div>
-
-        <!-- Footer -->
-        <div class="text-center pt-2 pb-6 space-y-1">
-            <p class="text-xs text-gray-500">هیئت سفینة‌النجاة · مشهد مقدس</p>
-            <p class="text-[10px] text-gray-600">طراحی شده برای نوجوانان حسینی</p>
-        </div>
-
+  <!-- هدر و لوگو -->
+  <div class="text-center pt-6 reveal d1">
+    <div class="logo-ring w-24 h-24 mx-auto bg-gradient-to-tr from-blue-600 to-purple-600 p-1">
+      <img src="logo.png" class="w-full h-full object-cover rounded-2xl bg-gray-900" onerror="this.style.display='none'">
     </div>
+    <h1 class="text-3xl font-black mt-4 glow-title">هیئت سفینةُالنّجاة</h1>
+    <p class="text-gray-400 text-sm mt-1">﷽ · نوجوانان مشهد مقدس · تأسیس ۱۴۰۴</p>
+  </div>
 
-    <!-- Countdown Script -->
-    <script>
-        const countDownDate = new Date().getTime() + (5 * 24 * 60 * 60 * 1000);
+  <!-- صوت زیارت عاشورا -->
+  <audio id="audio" loop>
+    <source src="ali_fani_ziarat_ashora.mp3" type="audio/mpeg">
+  </audio>
+  <div class="glass p-3 flex items-center justify-between reveal d2">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center"><i class="fa-solid fa-compact-disc fa-spin"></i></div>
+      <span class="text-xs font-bold text-gray-200">زیارت عاشورا · حاج علی فانی</span>
+    </div>
+    <button onclick="toggleAudio()" id="audioBtn" class="text-xs px-3 py-1.5 rounded-lg bg-gray-800 text-blue-300"><i class="fa-solid fa-pause"></i></button>
+  </div>
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
+  <!-- شمارشگر معکوس جلسه -->
+  <div class="glass p-4 text-center reveal d3">
+    <p class="text-xs text-blue-400 font-bold mb-3"><i class="fa-regular fa-clock ml-1"></i> مانده تا جلسه چهارشنبه شب</p>
+    <div id="countdown" class="grid grid-cols-4 gap-2">
+      <div class="bg-gray-800/70 p-2 rounded-xl"><span id="days" class="text-lg font-black block flip">۰</span><span class="text-[10px] text-gray-400">روز</span></div>
+      <div class="bg-gray-800/70 p-2 rounded-xl"><span id="hours" class="text-lg font-black block">۰</span><span class="text-[10px] text-gray-400">ساعت</span></div>
+      <div class="bg-gray-800/70 p-2 rounded-xl"><span id="mins" class="text-lg font-black block">۰</span><span class="text-[10px] text-gray-400">دقیقه</span></div>
+      <div class="bg-gray-800/70 p-2 rounded-xl"><span id="secs" class="text-lg font-black block">۰</span><span class="text-[10px] text-gray-400">ثانیه</span></div>
+    </div>
+  </div>
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  <!-- پوستر هفتگی -->
+  <div class="glass p-3 poster-frame reveal d4">
+    <p class="text-xs font-bold text-gray-300 mb-2 px-1"><i class="fa-solid fa-image text-blue-400 ml-1"></i> پوستر این هفته</p>
+    <div class="rounded-xl overflow-hidden"><img src="poster.jpg" class="poster-img w-full" onerror="this.style.display='none'"></div>
+  </div>
 
-            document.getElementById("days").innerText = days < 10 ? "۰" + days : days;
-            document.getElementById("hours").innerText = hours < 10 ? "۰" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "۰" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "۰" + seconds : seconds;
+  <!-- آدرس جلسه -->
+  <div class="glass p-4 text-center reveal d5">
+    <i class="fa-solid fa-location-dot text-blue-400 text-xl mb-2"></i>
+    <p class="text-xs text-gray-300 leading-relaxed">مشهد، بولوار لادن، مقابل لادن ۳۶<br>مسجد و حسینیه امام صادق (ع)</p>
+  </div>
 
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("countdown").innerHTML = "<div class='col-span-4 text-center text-blue-400 font-bold text-sm'>جلسه هیئت در حال برگزاری است!</div>";
-            }
-        }, 1000);
-    </script>
+  <!-- فرم خادمین و ارتباط با مدیریت -->
+  <div class="glass p-4 reveal d6">
+    <h3 class="text-sm font-bold text-white text-center mb-1"><i class="fa-solid fa-hands-holding-child text-blue-400 ml-1"></i> بخش خادمین</h3>
+    <p class="text-[11px] text-gray-400 text-center mb-3">مسئولیتی که دوست دارید داشته باشید (اختیاری) — مثلاً صوت، پذیرایی، هر کاری لازم باشد</p>
+    
+    <form id="khademForm" class="space-y-3">
+      <input type="text" id="kName" placeholder="نام و نام خانوادگی — مثلاً علی رضایی" required>
+      <input type="tel" id="kPhone" placeholder="شمارهٔ تلفن — ۰۹۱۲۱۲۳۴۵۶۷" required>
+      <input type="text" id="kRole" placeholder="مسئولیت دلخواه (اختیاری)">
+      <p class="text-[10px] text-gray-500 text-center"><i class="fa-solid fa-lock ml-1"></i> شمارهٔ شما فقط برای مدیر هیئت قابل مشاهده است.</p>
+      <button type="submit" class="btn-glow w-full py-3 rounded-xl text-white text-xs font-bold">ثبت و ارسال به مدیر هیئت</button>
+    </form>
+
+    <!-- اطلاعات تماس مستقیم مدیر -->
+    <div class="text-center pt-4 mt-4 border-t border-gray-800 space-y-1.5">
+      <p class="text-[10px] text-gray-400">یا مستقیم با مدیر هیئت در ارتباط باش:</p>
+      <a href="tel:+989158573786" class="block text-sm font-bold text-blue-300 tracking-widest" dir="ltr">+98 915 857 3786</a>
+      <a href="https://eitaa.com/Amirmahdi_Nikpajooh" target="_blank" class="inline-block text-[11px] text-orange-300 mt-1">
+        <i class="fa-solid fa-paper-plane ml-1"></i> پیام در ایتا: @Amirmahdi_Nikpajooh
+      </a>
+    </div>
+  </div>
+
+  <!-- لینک کانال ایتا -->
+  <a href="https://eitaa.com/javanan_safine_nejat" target="_blank" class="glass p-3.5 flex items-center justify-between reveal d7">
+    <div class="flex items-center gap-3">
+      <div class="w-9 h-9 rounded-lg bg-orange-500/20 text-orange-400 flex items-center justify-center font-bold text-xs">ایتا</div>
+      <span class="text-sm text-gray-200">کانال ایتا هیئت</span>
+    </div>
+    <i class="fa-solid fa-chevron-left text-xs text-gray-500"></i>
+  </a>
+
+  <div class="text-center pb-6">
+    <p class="text-[10px] text-gray-500">مدیر هیئت: امیرمهدی نیک‌پجو · @Amirmahdi_Nikpajooh</p>
+  </div>
+</div>
+
+<script>
+/* ---- پخش صوت با اولین کلیک کاربر ---- */
+const audio = document.getElementById('audio');
+function startAudio(){
+  audio.play().catch(()=>{});
+  document.getElementById('enterOverlay').classList.add('hide');
+}
+function toggleAudio(){
+  if(audio.paused){audio.play();document.getElementById('audioBtn').innerHTML='<i class="fa-solid fa-pause"></i>';}
+  else{audio.pause();document.getElementById('audioBtn').innerHTML='<i class="fa-solid fa-play"></i>';}
+}
+
+/* ---- تبدیل اعداد به فارسی ---- */
+const fa = n => String(n).replace(/\d/g,d=>'۰۱۲۳۴۵۶۷۸۹'[d]);
+
+/* ---- شمارشگر معکوس تا چهارشنبه ساعت ۲۱:۰۰ وقت مشهد ---- */
+function nextThursday(){
+  const now = new Date();
+  const t = new Date(now.toLocaleString('en-US',{timeZone:'Asia/Tehran'}));
+  const d = new Date(t);
+  d.setDate(t.getDate() + ((3 - t.getDay() + 7) % 7 || 7)); // 3 مخفف چهارشنبه
+  d.setHours(21,0,0,0);
+  if(d <= t) d.setDate(d.getDate()+7);
+  return d - t;
+}
+setInterval(()=>{
+  let dist = nextThursday();
+  document.getElementById('days').innerText = fa(Math.floor(dist/86400000));
+  document.getElementById('hours').innerText = fa(Math.floor(dist/3600000)%24);
+  document.getElementById('mins').innerText = fa(Math.floor(dist/60000)%60);
+  document.getElementById('secs').innerText = fa(Math.floor(dist/1000)%60);
+},1000);
+
+/* ---- ارسال فرم خادمین به واتساپ و ایتا مدیر ---- */
+document.getElementById('khademForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const n = document.getElementById('kName').value;
+  const p = document.getElementById('kPhone').value;
+  const r = document.getElementById('kRole').value || '—';
+  const msg = `سلام، می‌خواهم در هیئت سفینةُالنّجاة خادم شوم.%0A👤 نام: ${n}%0A📞 شماره: ${p}%0A🤝 مسئولیت: ${r}`;
+  
+  window.open(`https://wa.me/989158573786?text=${msg}`,'_blank');
+  setTimeout(()=>{ window.open(`https://eitaa.com/Amirmahdi_Nikpajooh`,'_blank'); }, 800);
+});
+</script>
 </body>
 </html>
