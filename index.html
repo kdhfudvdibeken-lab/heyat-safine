@@ -15,32 +15,30 @@
   }
   body{background:var(--bg);color:#f3f4f6;overflow-x:hidden}
 
-  /* پس‌زمینه و اشباح نورانی قرمز */
   .bg-glow{position:fixed;inset:0;z-index:-3;background:radial-gradient(circle at 50% -20%,#330d0d 0%,#090505 70%)}
   .blob{position:fixed;border-radius:50%;filter:blur(120px);z-index:-2;opacity:.2;animation:float 12s ease-in-out infinite}
   .blob1{width:350px;height:350px;background:#dc2626;top:-60px;right:-80px}
   .blob2{width:320px;height:320px;background:#991b1b;bottom:-50px;left:-80px;animation-delay:-6s}
   @keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-25px)}}
 
-  /* نوار متحرک بالا */
   .ticker-wrap{overflow:hidden;white-space:nowrap;background:linear-gradient(90deg,#1a0505,#2d0909,#1a0505);border-bottom:1px solid var(--card-border)}
   .ticker{display:inline-block;padding:9px 0;animation:tickermove 22s linear infinite;font-weight:700;font-size:0.9rem;letter-spacing:0.5px}
   @keyframes tickermove{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
   .ticker span{color:var(--red-light);text-shadow:0 0 10px rgba(220,38,38,0.4)}
 
-  /* کارت‌های شیشه‌ای لوکس */
   .glass-card{background:var(--card);border:1px solid var(--card-border);border-radius:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,0.6);transition:all .3s ease}
   .glass-card:hover{border-color:rgba(220,38,38,0.5);box-shadow:0 15px 40px rgba(220,38,38,0.15)}
 
-  /* تایپوگرافی و عناوین قرمز/سفید */
   .red-title{background:linear-gradient(135deg,#fff,#f87171,#dc2626);-webkit-background-clip:text;background-clip:text;color:transparent}
-  
-  /* شمارشگر معکوس */
+
   .timer-box{background:rgba(20,8,8,0.9);border:1px solid rgba(220,38,38,0.2);border-radius:1rem;padding:0.75rem;text-align:center}
 
-  /* صفحه ورود صوت */
   #enterOverlay{position:fixed;inset:0;background:rgba(9,5,5,0.97);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity .6s}
   #enterOverlay.hide{opacity:0;pointer-events:none}
+
+  .contact-row{display:flex;align-items:center;justify-content:space-between;padding:0.65rem 0;border-bottom:1px solid rgba(220,38,38,0.1)}
+  .contact-row:last-child{border-bottom:none}
+  .contact-row .id{font-size:0.7rem;color:#f87171;font-weight:700;direction:ltr}
 </style>
 </head>
 <body>
@@ -144,12 +142,29 @@
     <i class="fa-solid fa-chevron-left text-xs text-gray-500"></i>
   </a>
 
-  <!-- اطلاعات مدیریت و ادمین -->
-  <div class="glass-card p-4 text-center space-y-2">
-    <p class="text-xs text-gray-300 font-semibold">مدیریت هیئت: <span class="text-rose-300 font-bold">حجت‌الاسلام مرادی</span></p>
-    <div class="border-t border-red-500/10 pt-2 flex items-center justify-between text-xs">
-      <span class="text-gray-400">ادمین کانال ایتا: امیرمهدی نیک‌پجو</span>
-      <a href="tel:+989158573786" class="text-rose-400 font-bold tracking-wider" dir="ltr">+98 915 857 3786</a>
+  <!-- ارتباط با مسئولان هیئت -->
+  <div class="glass-card p-5">
+    <h3 class="text-xs font-bold text-rose-300 mb-2 text-center"><i class="fa-solid fa-users ml-1"></i> ارتباط با مسئولان هیئت</h3>
+
+    <div class="contact-row">
+      <span class="text-xs text-gray-300 font-semibold">مدیر هیئت: حجت‌الاسلام مرادی</span>
+      <a href="https://eitaa.com/Moradi135" target="_blank" class="id">@Moradi135</a>
+    </div>
+    <div class="contact-row">
+      <span class="text-xs text-gray-300 font-semibold">تلفن مدیر هیئت</span>
+      <a href="tel:09159027375" class="text-rose-400 font-bold text-xs tracking-wider" dir="ltr">0915 902 7375</a>
+    </div>
+    <div class="contact-row">
+      <span class="text-xs text-gray-300 font-semibold">مسئول هیئت</span>
+      <a href="https://eitaa.com/YaemamrezaMadadi8" target="_blank" class="id">@YaemamrezaMadadi8</a>
+    </div>
+    <div class="contact-row">
+      <span class="text-xs text-gray-300 font-semibold">تلفن مسئول هیئت</span>
+      <a href="tel:09158573786" class="text-rose-400 font-bold text-xs tracking-wider" dir="ltr">0915 857 3786</a>
+    </div>
+    <div class="contact-row">
+      <span class="text-xs text-gray-300 font-semibold">ادمین کانال ایتا</span>
+      <a href="https://eitaa.com/Amirmahdi_Nikpajooh" target="_blank" class="id">@Amirmahdi_Nikpajooh</a>
     </div>
   </div>
 
